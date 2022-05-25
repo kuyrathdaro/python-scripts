@@ -14,3 +14,4 @@ client.send(b"Hello")
 
 response = client.recv(4096)
 print(response.decode())
+client.close()

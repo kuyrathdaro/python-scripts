@@ -14,16 +14,12 @@ print(f"[*] Listening on {bind_ip}:{bind_port}")
 
 def handle_client(client_socket):
     request = client_socket.recv(1024)
-
-    print(f"[*] Received: {request}")
-
+    print(f"[*] Received: {request.decode('utf-8')}")
     client_socket.send(b"ACK!")
-
     client_socket.close()
 
 while True:
     client, addr = server.accept()
-
     print(f"[*] Accepted connection from: {addr[0]}:{addr[1]}")
     client_handler = threading.Thread(target=handle_client, args=(client,))
     client_handler.start()
